@@ -59,6 +59,16 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     var pageNo = parseInt(req.query.pageNo);
     var size = parseInt(req.query.size);
+    var token = String(req.query.token);
+    if (isNaN(size)){
+        res.status(500).send({
+            message: err.message || "size has to be a number"
+        });
+    } if (isNaN(size)){
+        res.status(500).send({
+            message: err.message || "page No has to be a number"
+        });
+    }
     var query = {}
         if(pageNo < 0 || pageNo === 0) {
                 response = {"error" : true,"message" : "invalid page number, should start with 1"};
